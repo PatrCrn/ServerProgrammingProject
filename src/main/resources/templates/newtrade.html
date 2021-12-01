@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New trade</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="navbar navbar-light bg-light">
+					<a class="navbar-brand" href="#">
+						<img src="https://aitrading.uk/wp-content/uploads/2020/11/logo-2.png" width="100" height="40" alt="">
+					</a>
+				</li>
+				<li class="nav-item">
+					<p th:inline="text" class="navbar-brand">Hello [[${#httpServletRequest.remoteUser}]] !</p>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/alltrades">Trades</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/allcryptos">Cryptocurrencies</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+				<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Out</button>
+			</form>
+		</div>
+	</nav>
+
+	<h1 style="text-align: center; margin-bottom: 30px">Make a trade</h1>
+
+	<div class="text-center">
+		<form th:object="${trade}" th:action="@{save}" action="#" method="post">
+			<div class="form-group">
+				<label for="day">Day</label>
+				<input type="text" id="day" th:field="*{day}" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<div class="form-group">
+				<label for="month">Month</label>
+				<input type="text" id="month" th:field="*{month}" placeholder="ex : november" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<div class="form-group">
+				<label for="year">Year</label>
+				<input type="text" id="year" th:field="*{year}" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<div class="form-group">
+				<label for="amount">Amount</label>
+				<input type="text" id="amount" th:field="*{amount}" placeholder="in $ with no decimals" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<div class="form-group">
+				<label for="entryPrice">Entry price</label>
+				<input type="text" id="entryPrice" th:field="*{entryPrice}" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<div class="form-group">
+				<label for="exitPrice">Exit price</label>
+				<input type="text" id="exitPrice" th:field="*{exitPrice}" />
+			</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="crypto">Choose a cryptocurrency : </label>
+			<select name="crypto" id="crypto" th:field="*{cryptocurrency}" class="form-control" style="width: 100px; margin:auto">
+				<option th:each="crypt : ${cryptos}" th:value="${crypt.cryptoId}" th:text="${crypt.ticker}">
+				</option>
+			</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<button type="submit" class="btn btn-primary" style="width: 80px">Add</button>
+		</form>
+	</div>
+</body>
+</html>

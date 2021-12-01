@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update trade</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="https://aitrading.uk/wp-content/uploads/2020/11/logo-2.png" width="100" height="40" alt="">
+        </a>
+      </li>
+      <li class="nav-item">
+        <p th:inline="text" class="navbar-brand">Hello [[${#httpServletRequest.remoteUser}]] !</p>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/alltrades">Trades</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/allcryptos">Cryptocurrencies</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Out</button>
+    </form>
+  </div>
+</nav>
+
+<h1 style="text-align: center; margin:20px 0">Update a trade</h1>
+
+<div style="text-align:center; margin: auto; width:50%">
+  <form th:object="${crypto}" th:action="@{../updatecrypto}" action="#" method="post">
+    <input type="hidden" class="form-control" id="idcrypto" th:field="*{cryptoId}"/>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" th:field="*{name}" />
+    </div>
+    <div style="clear: both; display: block; height: 10px;"></div>
+    <div class="form-group">
+      <label for="ticker">Ticker</label>
+      <input type="text" class="form-control" id="ticker" th:field="*{ticker}" />
+    </div>
+    <div style="clear: both; display: block; height: 10px;"></div>
+    <button type="submit" class="btn btn-primary" style="width: 80px; margin-bottom:50px">Confirm</button>
+  </form>
+</div>
+</body>
+</html>

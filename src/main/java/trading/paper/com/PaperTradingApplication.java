@@ -21,15 +21,15 @@ public class PaperTradingApplication {
 	public CommandLineRunner tradingDemo(TradeDAOImpl tradeDAO, CryptocurrencyDAOImpl cryptocurrencyDAO, UserDAOImpl userDAO) {
 		return (args) -> {
 			log.info("Save two users");
-			//userDAO.save(new User("patr74admin", "$2a$12$/MniID6CbVMEXqVsVwFk4.UqRQfKLYW1xzdJZ4Dt0E5g0JIYXYut.", "patr74admin@hotmail.com", "ADMIN"));
+			userDAO.save(new User("patr74admin", "$2a$12$/MniID6CbVMEXqVsVwFk4.UqRQfKLYW1xzdJZ4Dt0E5g0JIYXYut.", "patr74admin@hotmail.com", "ADMIN"));
 			// password for admin : pepeadmin
-			//userDAO.save(new User("patr74user", "$2a$12$WazcuIZlpylplvOAEThU7eUPdGJNvzGUakntMouox8VkNxRW8m0Mm", "patr74user@hotmail.com", "USER"));
+			userDAO.save(new User("patr74user", "$2a$12$WazcuIZlpylplvOAEThU7eUPdGJNvzGUakntMouox8VkNxRW8m0Mm", "patr74user@hotmail.com", "USER"));
 			// password for user : pepeuser
 
 			log.info("save some cryptos");
-			//cryptocurrencyDAO.save(new Cryptocurrency("Bitcoin", "BTC"));
-			//cryptocurrencyDAO.save(new Cryptocurrency("Ethereum", "ETH"));
-			//cryptocurrencyDAO.save(new Cryptocurrency("Solana", "SOL"));
+			cryptocurrencyDAO.save(new Cryptocurrency("Bitcoin", "BTC"));
+			cryptocurrencyDAO.save(new Cryptocurrency("Ethereum", "ETH"));
+			cryptocurrencyDAO.save(new Cryptocurrency("Solana", "SOL"));
 
 			log.info("do some trades");
 			// cryptocurrencyDAO.findByTicker("SOL")
